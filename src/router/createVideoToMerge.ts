@@ -1,5 +1,5 @@
 import axios from "axios";
-import ytdl from "ytdl-core";
+import ytdl from "@distube/ytdl-core";
 import { protos } from "@google-cloud/tasks";
 import createTask from "../functions/createTask.js";
 
