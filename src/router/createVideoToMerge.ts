@@ -4,6 +4,7 @@ import { protos } from "@google-cloud/tasks";
 import createTask from "../functions/createTask.js";
 
 import { Request, Response, Router } from "express";
+import ytdlAgent from "../functions/createYtdlAgent.js";
 
 const router = Router();
 
@@ -22,7 +23,7 @@ router.post("/", async (req: Request, res: Response) => {
       return;
     }
 
-    const data = await ytdl.getInfo(link);
+    const data = await ytdl.getInfo(link,{agent:ytdlAgent});
     let format = data.formats.find((format) => format.qualityLabel === quality);
     if (!format) {
       res.status(400).json({ error: "Invalid Quality" });
@@ -80,4 +81,3 @@ router.post("/", async (req: Request, res: Response) => {
 
 const createVideoToMerge = router;
 export default createVideoToMerge;
-// export default function createVideoToMerge(second) {third}
