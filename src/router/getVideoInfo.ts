@@ -5,12 +5,15 @@ import videoInfo from "../platfroms/youtube/videoInfo.js";
 const router = Router();
 
 router.post("/", async (req: Request, res: Response) => {
+
   if (!req.body.url) {
     res.status(400).json({ error: "URL is required" });
     return;
   }
 
   const url = req.body.url;
+  console.log("Requested url")
+  console.log(url)
 
   if (getPlatformFromUrl(url) === "youtube") {
     try {
