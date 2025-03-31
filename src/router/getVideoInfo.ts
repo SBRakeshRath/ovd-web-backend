@@ -5,15 +5,12 @@ import videoInfo from "../platfroms/youtube/videoInfo.js";
 const router = Router();
 
 router.post("/", async (req: Request, res: Response) => {
-
   if (!req.body.url) {
     res.status(400).json({ error: "URL is required" });
     return;
   }
 
   const url = req.body.url;
-  console.log("Requested url")
-  console.log(url)
 
   if (getPlatformFromUrl(url) === "youtube") {
     try {
@@ -33,6 +30,7 @@ router.post("/", async (req: Request, res: Response) => {
         platform: "youtube",
       });
     } catch (error) {
+      console.log("Error in getVideoInfo route: ");
       console.log(error);
       res.status(500).json({
         error: "Internal Server Error",

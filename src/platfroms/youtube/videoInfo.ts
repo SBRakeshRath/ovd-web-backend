@@ -7,9 +7,14 @@ export default async function videoInfo(link: string) {
     if (!ytdl.validateURL(link)) {
       return { error: "Invalid URL" };
     }
+    console.log("Got info")
+
     const info = await ytdl.getInfo(link,{
       agent:ytdlAgent
     });
+    console.log("Got info")
+    console.log(info)
+    // const info = await ytdl.getInfo(link);
     const videoDetails = info.videoDetails;
 
     const audioFormats = ytdl.filterFormats(info.formats, "audioonly");
@@ -23,6 +28,8 @@ export default async function videoInfo(link: string) {
       videoWithoutAudio,
     };
   } catch (error) {
+    console.log("Error in videoInfo function: ");
+    console.log(error)
     return { error: error.message };
   }
 }
