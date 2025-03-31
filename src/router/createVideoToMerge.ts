@@ -23,7 +23,9 @@ router.post("/", async (req: Request, res: Response) => {
       return;
     }
 
-    const data = await ytdl.getInfo(link,{agent:ytdlAgent});
+    // const data = await ytdl.getInfo(link,{agent:ytdlAgent});
+    const data = await ytdl.getInfo(link);
+
     let format = data.formats.find((format) => format.qualityLabel === quality);
     if (!format) {
       res.status(400).json({ error: "Invalid Quality" });

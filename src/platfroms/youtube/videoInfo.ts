@@ -9,12 +9,10 @@ export default async function videoInfo(link: string) {
     }
     console.log("Got info")
 
-    const info = await ytdl.getInfo(link,{
-      agent:ytdlAgent
-    });
-    console.log("Got info")
-    console.log(info)
-    // const info = await ytdl.getInfo(link);
+    // const info = await ytdl.getInfo(link,{
+    //   agent:ytdlAgent
+    // });
+    const info = await ytdl.getInfo(link);
     const videoDetails = info.videoDetails;
 
     const audioFormats = ytdl.filterFormats(info.formats, "audioonly");
